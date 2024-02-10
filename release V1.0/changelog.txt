@@ -1,0 +1,4 @@
+-Initial commit
+-Added detection of game status
+-Added modification of game status string
+-Added user interface to customise modifications
