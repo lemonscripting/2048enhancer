@@ -9,10 +9,15 @@ menuContainer.style.borderRadius = '5px';
 menuContainer.style.color = '#ffffff';
 menuContainer.style.fontFamily = 'Arial, sans-serif';
 
-const heading = document.createElement('h1');
-heading.textContent = '2048 Enhancer Beta';
+const heading = document.createElement('h2');
+heading.textContent = '2048 Enhancer V1.0';
 heading.style.marginBottom = '10px';
 menuContainer.appendChild(heading);
+
+const author = document.createElement('h3');
+author.textContent = '@lemonscripting';
+author.style.marginBottom = '10px';
+menuContainer.appendChild(author);
 
 const inputX = document.createElement('div');
 inputX.innerHTML = '<label for="x">x:</label> <select id="x"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>';
