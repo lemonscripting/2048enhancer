@@ -1,0 +1,5 @@
+-change styling methods
+-better UI
+-added custom value
+-added edit score
+-added clear data

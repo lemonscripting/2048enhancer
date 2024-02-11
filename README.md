@@ -32,6 +32,12 @@ By using this script, you agree to **take full responsibility** for your actions
 - Added modification of game status string🛠️
 - Added user interface to customise modifications🛠️
 
+# V1.1
+- Change styling methods✨
+- Better UI🎨
+- Added custom value🛠️
+- Added edit score📝
+- Added clear data🧹
 ## License
 ```
 Copyright 2024 lemonscripting
