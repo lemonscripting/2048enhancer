@@ -69,19 +69,19 @@ menuContainer.innerHTML = `
         <div class="dropdown-arrow"></div>
     </div>
 </div>
+<button id="startBot" class="inject-button">Start Bot</button>
 
-    <button id="clearData" class="inject-button">Clear Data</button>
+<button id="stopBot" class="inject-button">Stop Bot</button>
 
-    <button id="startBot" class="inject-button">Start Bot</button>
+<br><br>
 
-    <br><br>
+<button id="clearData" class="inject-button">Clear Data</button>
 
-    <button id="injectButton" class="inject-button">Inject</button>
+<button id="injectButton" class="inject-button">Inject</button>
 `;
 
 document.body.appendChild(menuContainer);
 
-// Styles
 const style = document.createElement('style');
 style.textContent = `
     .menu-container {
@@ -234,15 +234,15 @@ function main() {
     } else {
         gameState.grid.cells[x_val][y_val] = { position: { x: x_val, y: y_val }, value: cus_val };
     }
-    if (score_val != 0){
+    if (score_val != 0) {
         gameState.score = score_val;
     }
-    
+
     localStorage.setItem('gameState', JSON.stringify(gameState));
     location.reload();
 }
 
-function whipe(){
+function whipe() {
     localStorage.clear();
     console.clear();
     location.reload();
@@ -300,9 +300,13 @@ function startBOT() {
     }
 }
 
-
+function stopBOT() {
+    clearInterval(botID);
+}
 injectButton.addEventListener('click', main);
 
 clearData.addEventListener('click', whipe);
 
 startBot.addEventListener('click', startBOT);
+
+stopBot.addEventListener('click', stopBOT);

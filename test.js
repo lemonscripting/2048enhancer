@@ -1,9 +1,8 @@
 const menuContainer = document.createElement('div');
 menuContainer.classList.add('menu-container');
 menuContainer.innerHTML = `
-    <h2 class="heading">2048 Enhancer V1.1</h2>
+    <h2 class="heading">2048 Enhancer V1.2</h2>
     <h3 class="author">@lemonscripting</h3>
-    <h6 class="author">priorities custom over select</h6>
     <div class="input-row">
         <label for="x">x:</label>
         <div class="custom-dropdown">
@@ -57,14 +56,32 @@ menuContainer.innerHTML = `
         <input type="text" id="score" name="customInput" class="custom-input" placeholder="null">
     </div>
 
-    <button id="clearData" class="inject-button">Clear Data</button>
+    <div class="input-row">
+    <label for="value">Autobot Speed:</label>
+    <div class="custom-dropdown">
+        <select id="botspeed" class="select-box">
+        <option value="999">OFF</option>
+            <option value="300">LOW</option>
+            <option value="150">MID</option>
+            <option value="50">HIGH</option>
+            <option value="10">MAX</option>
+        </select>
+        <div class="dropdown-arrow"></div>
+    </div>
+</div>
+<button id="startBot" class="inject-button">Start Bot</button>
 
-    <button id="injectButton" class="inject-button">Inject</button>
+<button id="stopBot" class="inject-button">Stop Bot</button>
+
+<br><br>
+
+<button id="clearData" class="inject-button">Clear Data</button>
+
+<button id="injectButton" class="inject-button">Inject</button>
 `;
 
 document.body.appendChild(menuContainer);
 
-// Styles
 const style = document.createElement('style');
 style.textContent = `
     .menu-container {
@@ -217,19 +234,79 @@ function main() {
     } else {
         gameState.grid.cells[x_val][y_val] = { position: { x: x_val, y: y_val }, value: cus_val };
     }
-    if (score_val != 0){
+    if (score_val != 0) {
         gameState.score = score_val;
     }
-    
+
     localStorage.setItem('gameState', JSON.stringify(gameState));
     location.reload();
 }
 
-function whipe(){
+function whipe() {
     localStorage.clear();
     console.clear();
+    location.reload();
 }
 
+var right = new KeyboardEvent('keydown', {
+    key: 'ArrowRight',
+    bubbles: true,
+    keyCode: 39,
+});
+var left = new KeyboardEvent('keydown', {
+    key: 'ArrowLeft',
+    bubbles: true,
+    keyCode: 37,
+});
+var up = new KeyboardEvent('keydown', {
+    key: 'ArrowUp',
+    bubbles: true,
+    keyCode: 38,
+});
+var down = new KeyboardEvent('keydown', {
+    key: 'ArrowDown',
+    bubbles: true,
+    keyCode: 40,
+});
+
+function selectCase() {
+    var randomNumber = Math.floor(Math.random() * 4) + 1;
+    switch (randomNumber) {
+        case 1:
+            document.body.dispatchEvent(right);
+            break;
+        case 2:
+            document.body.dispatchEvent(left);
+            break;
+        case 3:
+            document.body.dispatchEvent(up);
+            break;
+        case 4:
+            document.body.dispatchEvent(down);
+            break;
+        default:
+            break;
+    }
+}
+
+var botID;
+
+function startBOT() {
+    clearInterval(botID);
+    var speed_raw = document.getElementById('botspeed');
+    var SPEED = parseInt(speed_raw.value);
+    if (SPEED != 999) {
+        botID = setInterval(selectCase, SPEED);
+    }
+}
+
+function stopBOT() {
+    clearInterval(botID);
+}
 injectButton.addEventListener('click', main);
 
 clearData.addEventListener('click', whipe);
+
+startBot.addEventListener('click', startBOT);
+
+stopBot.addEventListener('click', stopBOT);
