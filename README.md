@@ -38,6 +38,12 @@ By using this script, you agree to **take full responsibility** for your actions
 - Added custom value🛠️
 - Added edit score📝
 - Added clear data🧹
+
+# V1.2
+- Fixed minor bugs🛠️
+- Added autobot🤖
+- Added various speeds for autobot⚡
+
 ## License
 ```
 Copyright 2024 lemonscripting

@@ -1,0 +1,3 @@
+-fixed minor bugs
+-added autobot
+-added various speeds for autobot
